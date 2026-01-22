@@ -1,0 +1,263 @@
+/* --- BASIS RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Zorg dat de body de volledige hoogte van de viewport gebruikt */
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f8f8;
+    color: #1a1a1a;
+    overflow: hidden; /* Voorkom dubbele scrollbars op de gehele pagina */
+}
+
+/* De container vult de volledige beschikbare hoogte */
+.layout-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* --- HEADER --- */
+.main-header {
+    height: 64px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    flex-shrink: 0; /* Header mag niet krimpen */
+    z-index: 50;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #1a1a1a;
+}
+
+.divider {
+    height: 16px;
+    width: 1px;
+    background-color: #e5e7eb;
+}
+
+.platform-tag {
+    color: #d1d5db;
+    font-weight: 900;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.user-text {
+    text-align: right;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.user-role {
+    font-size: 9px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #0078ff;
+    margin-top: 2px;
+}
+
+/* Uitlogknop Styling */
+.logout-icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 1px solid #f0f0f0;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.logout-icon-button img {
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+}
+
+.logout-icon-button:hover {
+    background-color: #fff1f2;
+    border-color: #fecaca;
+}
+
+.logout-icon-button:hover img {
+    opacity: 1;
+    filter: invert(18%) sepia(88%) saturate(5412%) hue-rotate(346deg) brightness(91%) contrast(101%); /* Maakt het icoon rood op hover */
+}
+
+/* --- APP BODY STRUCTURE --- */
+/* Deze div vult de rest van de pagina onder de header */
+.app-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden; /* Belangrijk: zorgt dat sidebar en content apart scrollen */
+}
+
+/* --- SIDEBAR --- */
+/* De sidebar vult nu altijd de volledige hoogte van de .app-body */
+.sidebar {
+    width: 256px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Vult de volledige hoogte van de ouder */
+    flex-shrink: 0;
+}
+
+.nav-menu {
+    flex: 1;
+    padding: 40px 24px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto; /* Scroll alleen binnen het menu indien nodig */
+}
+
+/* Sidebar Scrollbar */
+.nav-menu::-webkit-scrollbar {
+    width: 4px;
+}
+.nav-menu::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.2s ease;
+    border-radius: 2px;
+}
+
+.nav-icon {
+    filter: brightness(0) invert(0.7); /* Maakt de icons grijs/witachtig */
+}
+
+.nav-item.active {
+    background-color: #0078ff;
+    color: #ffffff;
+}
+
+.nav-item.active .nav-icon {
+    filter: brightness(0) invert(1); /* Maakt icoon volledig wit op actieve staat */
+}
+
+.nav-item:not(.active) {
+    color: #9ca3af;
+}
+
+.nav-item:not(.active):hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav-item:not(.active):hover .nav-icon {
+    filter: brightness(0) invert(1);
+}
+
+.sidebar-footer {
+    padding: 32px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    background-color: rgba(0,0,0,0.2);
+    flex-shrink: 0;
+}
+
+.role-heading {
+    font-size: 9px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #6b7280;
+    margin-bottom: 16px;
+}
+
+.role-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.role-btn {
+    background: none;
+    border: none;
+    color: #4b5563;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: left;
+    padding-left: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.role-btn.active {
+    color: #0078ff;
+    border-left: 2px solid #0078ff;
+}
+
+.role-btn:not(.active):hover {
+    color: #d1d5db;
+}
+
+/* --- MAIN CONTENT --- */
+.main-content {
+    flex: 1;
+    overflow-y: auto; /* Alleen de content scrollt verticaal */
+    padding: 64px;
+    background-color: #f8f8f8;
+}
+
+.content-wrapper {
+    max-width: 1152px;
+    margin: 0 auto;
+}

@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Sanibell Productie Platform</title>
+    <!-- Google Fonts: Poppins -->
+    <link
+        href="https://www.google.com/search?q=https://fonts.googleapis.com/css2%3Ffamily%3DPoppins:wght%40400%3B700%3B900%26display%3Dswap"
+        rel="stylesheet">
+    <!-- Externe CSS koppeling -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+
+<body class="layout-container">
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-left">
+            <span class="logo-text">Sanibell</span>
+            <div class="divider"></div>
+            <span class="platform-tag">Productie Platform</span>
+        </div>
+
+        <div class="header-right">
+            <div class="user-info">
+                <div class="user-text">
+                    <div class="user-name">@User.Identity?.Name</div>
+                    <div class="user-role">Administrator</div>
+                </div>
+
+                <form class="logout-form" asp-area="Identity" asp-page="/Account/Logout"
+                    asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post">
+                    <button type="submit" class="logout-icon-button" title="Uitloggen">
+                        <img src="~/icons/logout.svg" alt="Logout" width="20" height="20" />
+                    </button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-body">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="nav-menu">
+                <a asp-controller="Home" asp-action="Behoefte"
+                    class="nav-item @(ViewContext.RouteData.Values["Action"]?.ToString() == "Behoefte" ? "active" : "")">
+                    <img src="~/icons/behoefte.svg" alt="" class="nav-icon" width="18" height="18" />
+                    <span>Behoefte</span>
+                </a>
+                <a asp-controller="Home" asp-action="Index"
+                    class="nav-item @(ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "active" : "")">
+                    <img src="~/icons/overzicht.svg" alt="" class="nav-icon" width="18" height="18" />
+                    <span>Overzicht</span>
+                </a>
+                <a asp-controller="Home" asp-action="Uitvoering"
+                    class="nav-item @(ViewContext.RouteData.Values["Action"]?.ToString() == "Uitvoering" ? "active" : "")">
+                    <img src="~/icons/uitvoering.svg" alt="" class="nav-icon" width="18" height="18" />
+                    <span>Uitvoering</span>
+                </a>
+                <a asp-controller="Settings" asp-action="Index"
+                    class="nav-item @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Settings" ? "active" : "")">
+                    <img src="~/icons/instellingen.svg" alt="" class="nav-icon" width="18" height="18" />
+                    <span>Instellingen</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                @RenderBody()
+            </div>
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+</body>
+
+</html>
